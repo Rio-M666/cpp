@@ -13,10 +13,9 @@ MLX_INCLUDES = -I$(MLX_PATH)
 
 SRCS = src/main.c  src/check.c src/check2.c src/game.c src/image.c src/map.c src/key.c
 
-ALL_SRCS=$(SRCS) $(LIBFT)
 OBJS = $(SRCS:.c=.o)
 
-all: mlx_make $(NAME)
+all: mlx_make $(NAME) $(LIBFT)
 
 mlx_make:
 	@make -C $(MLX_PATH)
@@ -43,7 +42,5 @@ fclean: clean
 
 re: fclean all
 
-test: $(NAME)
-	./$(NAME) test.ber
 
-.PHONY: all clean fclean re test mlx_make
+.PHONY: all clean fclean re test mlx_make $(LIBFT_PATH)

@@ -6,7 +6,7 @@
 /*   By: mrio <mrio@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:18:25 by mrio              #+#    #+#             */
-/*   Updated: 2025/09/26 14:10:28 by mrio             ###   ########.fr       */
+/*   Updated: 2025/09/29 19:32:45 by mrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <unistd.h>
 
 # define TILE_SIZE 32
+
+#define MAX_MAP_WIDTH 500
+#define MAX_MAP_HEIGHT 500
+
 
 # define WINDOW_TITLE "SO_LONG"
 
@@ -86,7 +90,7 @@ int				check_path(t_game *game);
 t_element_count	count_elements(t_game *game);
 int				find_player_position(t_game *game);
 void			flood_fill(char **map_copy, int x, int y, t_flood_data *data);
-
+int check_mapsize(t_game *game);
 void			init_mlx(t_game *game);
 void			cleanup_game(t_game *game);
 int				init_game_data(t_game *game, char **map);

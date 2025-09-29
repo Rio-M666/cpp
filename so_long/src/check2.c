@@ -6,11 +6,11 @@
 /*   By: mrio <mrio@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 13:37:17 by mrio              #+#    #+#             */
-/*   Updated: 2025/09/16 10:23:04 by mrio             ###   ########.fr       */
+/*   Updated: 2025/09/29 18:37:32 by mrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 t_element_count	count_elements(t_game *game)
 {
@@ -84,4 +84,14 @@ void	flood_fill(char **map_copy, int x, int y, t_flood_data *data)
 	flood_fill(map_copy, x - 1, y, data);
 	flood_fill(map_copy, x, y + 1, data);
 	flood_fill(map_copy, x, y - 1, data);
+}
+
+int check_mapsize(t_game *game)
+{
+	if(game->map_width>MAX_MAP_WIDTH)
+		return 0;
+	else if(game->map_height>MAX_MAP_HEIGHT)
+		return 0;
+	return 1;
+	
 }

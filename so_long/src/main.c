@@ -6,11 +6,11 @@
 /*   By: mrio <mrio@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 01:33:21 by mrio              #+#    #+#             */
-/*   Updated: 2025/09/25 18:57:24 by mrio             ###   ########.fr       */
+/*   Updated: 2025/09/29 18:39:21 by mrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	map_width(char **map)
 {
@@ -42,6 +42,8 @@ int	validate_map(t_game *game)
 
 	if (!game->map)
 		return (ft_printf("Error\nMap is empty or invalid\n"), 0);
+	if(!check_mapsize(game))
+		return (ft_printf("Error\nThis map is too big\n"), 0);
 	if (!check_square(game))
 		return (ft_printf("Error\nMap must be rectangular\n"), 0);
 	if (!check_wall(game))
