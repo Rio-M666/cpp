@@ -6,22 +6,21 @@
 /*   By: mrio <mrio@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:29:16 by mrio              #+#    #+#             */
-/*   Updated: 2025/10/09 21:01:00 by mrio             ###   ########.fr       */
+/*   Updated: 2025/10/09 21:52:02 by mrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int		g_client_pid = 0;
-
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static unsigned char	current_char = 0;
 	static int				bit_pos = 0;
+	static int				client_pid = 0;
 
 	(void)context;
 	if (info->si_pid != 0)
-		g_client_pid = info->si_pid;
+		client_pid = info->si_pid;
 	if (sig == SIGUSR2)
 		current_char |= (1 << bit_pos);
 	bit_pos++;
@@ -34,8 +33,8 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 		current_char = 0;
 		bit_pos = 0;
 	}
-	if (g_client_pid)
-		kill(g_client_pid, SIGUSR1);
+	if (client_pid)
+		kill(client_pid, SIGUSR1);
 }
 
 int	main(void)
@@ -46,7 +45,7 @@ int	main(void)
 	pid = getpid();
 	write(1, "Server PID: ", 13);
 	ft_putnbr(pid);
-	ft_putchr('\n');
+	write(1, "\n", 1);
 	sa.sa_sigaction = handle_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;

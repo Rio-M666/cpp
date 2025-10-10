@@ -6,7 +6,7 @@
 /*   By: mrio <mrio@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 18:05:21 by mrio              #+#    #+#             */
-/*   Updated: 2025/10/09 19:50:50 by mrio             ###   ########.fr       */
+/*   Updated: 2025/10/09 21:33:41 by mrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 
 void	handle_signal(int sig, siginfo_t *info, void *context);
 void	send_string(int pid, char *str);
+void	ack_handler(int sig);
 
 #endif
